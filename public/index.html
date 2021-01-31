@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>User Directory</title>
+  </head>
+
+  <body>
+    <h1>Employee Directory</h1>
+    <script>
+      const request = window.indexedDB.open("toDoList", 1);
+
+      request.onupgradeneeded = ({ target }) => {
+        const db = target.result;
+
+        const objectStore = db.createObjectStore("toDoList");
+        objectStore.createIndex("timestamp", "timestamp");
+      };
+
+      request.onsuccess = (event) => {
+        console.log(request.result);
+      };
+    </script>
+  </body>
+</html>
